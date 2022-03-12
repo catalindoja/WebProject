@@ -12,3 +12,14 @@ class Zoo(models.Model):
 
     def __unicode__(self):
         return u"%s" % self.name
+
+
+class Animal(models.Model):
+    animal_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=80)
+    #zoo_id = get id from Zoo class
+    #caretaker_id = get id from Staff class
+    #veterinary_id = get id from Veterinary class
+
+    def __unicode__(self):
+        return u"%s" % self.name
