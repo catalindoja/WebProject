@@ -38,7 +38,17 @@ class Worker(models.Model):
     def __unicode__(self):
         return u"%s" % self.name
 
+
 class Staff(models.Model):
+    name = models.CharField(max_length=50)
+    # name varchar(50)
+    age = models.IntegerField(default=17, validators=[MinValueValidator(17)])
+
+    def __unicode__(self):
+        return u"%s" % self.name
+
+
+class Veterinary(models.Model):
     name = models.CharField(max_length=50)
     # name varchar(50)
     age = models.IntegerField(default=17, validators=[MinValueValidator(17)])
