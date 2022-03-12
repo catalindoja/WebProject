@@ -4,3 +4,4 @@ from zooproject import models
 admin.site.register(models.Zoo)
 admin.site.register(models.Animal)
 admin.site.register(models.Worker)
+admin.site.register(models.Staff)
