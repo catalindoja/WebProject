@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.core.validators import MinValueValidator
+from datetime import date
 
 
 class Zoo(models.Model):
@@ -52,6 +53,18 @@ class Veterinary(models.Model):
     name = models.CharField(max_length=50)
     # name varchar(50)
     age = models.IntegerField(default=17, validators=[MinValueValidator(17)])
+
+    def __unicode__(self):
+        return u"%s" % self.name
+
+
+class Visitor(models.Model):
+    name = models.CharField(max_length=40,blank=False,null=False)
+    telephone = models.DecimalField(max_digits=9, decimal_places=0, blank=False,null=False)
+    email = models.EmailField(blank=False,null=False)
+    age = models.DecimalField(max_digits=3, decimal_places=0, blank=False,null=False)
+    dateLatestVisit = models.DateField(default=date.today,blank=False,null=False)
+    latestZooVisited = models.IntegerField(blank=False,null=False)
 
     def __unicode__(self):
         return u"%s" % self.name
