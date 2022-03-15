@@ -6,6 +6,7 @@ from datetime import date
 
 
 class Zoo(models.Model):
+    zoo_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=60)
     description = models.TextField(blank=True, null=True)
     max_visitors = models.DecimalField('Max amount of visitors', max_digits=8, decimal_places=0, blank=False, null=False)
@@ -30,7 +31,7 @@ class Animal(models.Model):
 class Worker(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=80)
-    occupation = models.CharField(max_length=15)
+    age = models.DateField(default=date.today, blank=False, null=False)
     address = models.CharField(max_length=80)
     postalcode = models.DecimalField('Postal code', max_digits=8, decimal_places=0, blank=False, null=False)
     # ??? phone_number = PhoneNumberField(null=False, blank=False, unique=True) # from phonenumber_field.modelfields import PhoneNumberField # pip install django-phonenumber-field
@@ -40,19 +41,19 @@ class Worker(models.Model):
         return u"%s" % self.name
 
 
-class Staff(models.Model):
-    name = models.CharField(max_length=50)
-    # name varchar(50)
-    age = models.IntegerField(default=17, validators=[MinValueValidator(17)])
+class Staff(Worker):
+    staff_id = models.AutoField(primary_key=True)
+    assigned_habitat = models.CharField(max_length=80, default="Dolphins")
 
     def __unicode__(self):
         return u"%s" % self.name
 
 
-class Veterinary(models.Model):
-    name = models.CharField(max_length=50)
+class Veterinary(Worker):
+    vet_id = models.AutoField(primary_key=True)
+    assigned_animals = models.IntegerField(null=False, blank=False)
     # name varchar(50)
-    age = models.IntegerField(default=17, validators=[MinValueValidator(17)])
+
 
     def __unicode__(self):
         return u"%s" % self.name
