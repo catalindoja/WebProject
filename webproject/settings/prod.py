@@ -5,7 +5,7 @@ import os
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['limitless-reaches-64342.herokuapp.com']
+ALLOWED_HOSTS = ['https://limitless-reaches-64342.herokuapp.com/', 'https://limitless-reaches-64342.herokuapp.com']
 
 DATABASES = {
     'default': {
