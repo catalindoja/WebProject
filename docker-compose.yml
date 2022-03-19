@@ -1,0 +1,23 @@
+#docker-compose.yml
+version: '3'
+services:
+  db:
+    container_name: "django-postgre"
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "django"
+      POSTGRES_PASSWORD: "admin"
+      POSTGRES_DB: "django"
+    restart: "no"
+  web:
+    container_name: "django"
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
