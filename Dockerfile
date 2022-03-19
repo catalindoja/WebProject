@@ -1,7 +1,7 @@
-FROM python
-RUN mkdir /app
+FROM python:3.9
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 WORKDIR /app
-ADD requirements.txt /app/
+COPY requirements.txt /app/
 RUN pip install -r requirements.txt
-ADD . /app/
-RUN python manage.py collectstatic
+COPY . /app/
