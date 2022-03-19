@@ -22,6 +22,6 @@ from zooproject import views
 urlpatterns = [
     path('', auth_views.LoginView.as_view(template_name='registration/login.html',next_page='/admin')),
     path('admin/', admin.site.urls),
-
+    path('register/', views.signup),
 
 ]
