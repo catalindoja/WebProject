@@ -5,6 +5,13 @@ from . settings import *
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "django",
+        'USER': "django",
+        'PASSWORD': "secret",
+        'HOST': "django-postgre",
+        'PORT': '5432',
+    }, 'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
@@ -13,4 +20,4 @@ DATABASES = {
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0']
