@@ -2,6 +2,8 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from .models import Worker
+
 
 def signup(request):
     if request.method == 'POST':
@@ -16,3 +18,10 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
+
+
+def list_data(r):
+    workers = Worker.objects.all()
+    workers_dictionary =  {'workers': workers}
+    
+    return render(r, 'zooproject/list_data.html', workers_dictionary)

@@ -1,0 +1,6 @@
+<ul>
+    <b>Workers:</b>
+    {% for worker in workers%}
+    <li>{{worker.worker_id}} - {{worker.name}} - {{worker.age}} - {{worker.address}} - {{worker.postalcode}}</li>
+    {% endfor %}
+</ul>
