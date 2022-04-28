@@ -1,5 +1,12 @@
 from django.db import models
 from datetime import date
+from django.contrib.auth.models import AbstractUser
+
+
+class WebUser(AbstractUser):
+    is_veterinary = models.BooleanField(default=False)
+    is_visitor = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
 
 
 class Zoo(models.Model):
@@ -10,8 +17,8 @@ class Zoo(models.Model):
     address = models.CharField(max_length=80)
     postalcode = models.DecimalField('Postal code', max_digits=8, decimal_places=0, blank=False, null=False)
 
-    def __unicode__(self):
-        return u"%s" % self.name
+    def __str__(self):
+        return str(self.name)
 
 
 class Worker(models.Model):
@@ -29,6 +36,7 @@ class Worker(models.Model):
 
 
 class Staff(Worker):
+    User = models.OneToOneField(WebUser, on_delete=models.CASCADE, primary_key=True)
     assigned_habitat = models.CharField(max_length=80, default="Dolphins")
 
     def __unicode__(self):
@@ -36,6 +44,7 @@ class Staff(Worker):
 
 
 class Veterinary(Worker):
+    User = models.OneToOneField(WebUser, on_delete=models.CASCADE, primary_key=True)
     number_assigned_animals = models.IntegerField(null=False, blank=False)
     # name varchar(50)
 
@@ -56,6 +65,7 @@ class Animal(models.Model):
 
 class Visitor(models.Model):
     visitor_id = models.AutoField(primary_key=True)
+    User = models.OneToOneField(WebUser, on_delete=models.CASCADE, primary_key=True)
     name = models.CharField(max_length=40,blank=False,null=False)
     telephone = models.DecimalField(max_digits=9, decimal_places=0, blank=False,null=False)
     email = models.EmailField(blank=False,null=False)
