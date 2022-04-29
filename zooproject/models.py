@@ -26,7 +26,7 @@ class Worker(models.Model):
     name = models.CharField(max_length=80)
     age = models.DateField(default=date.today, blank=False, null=False)
     address = models.CharField(max_length=80)
-    postalcode = models.DecimalField('Postal code', max_digits=8, decimal_places=0, blank=False, null=False)
+    postalcode = models.IntegerField(null=True)
     zoo_id = models.ForeignKey(Zoo, null=True, on_delete=models.CASCADE)
     # ??? phone_number = PhoneNumberField(null=False, blank=False, unique=True) # from phonenumber_field.modelfields import PhoneNumberField # pip install django-phonenumber-field
     # ??? zoo_id = get id from Zoo class
