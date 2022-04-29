@@ -9,7 +9,7 @@ from django.views.generic.edit import CreateView, UpdateView
 
 
 class SignupVeterinaryView(CreateView):
-    model = Veterinary
+    model = WebUser
     form_class = VeterinarySignupForm
     template_name = 'registration/register_veterinary.html'
 
