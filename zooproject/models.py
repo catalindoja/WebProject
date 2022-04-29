@@ -24,9 +24,9 @@ class Zoo(models.Model):
 class Worker(models.Model):
     worker_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=80)
-    age = models.DateField(default=date.today, blank=False, null=False)
+    age = models.IntegerField(blank=False, null=True)
     address = models.CharField(max_length=80)
-    postalcode = models.IntegerField(blank=False, null=False)
+    postalcode = models.IntegerField(blank=False, null=True)
     zoo_id = models.ForeignKey(Zoo, null=True, on_delete=models.CASCADE)
     # ??? phone_number = PhoneNumberField(null=False, blank=False, unique=True) # from phonenumber_field.modelfields import PhoneNumberField # pip install django-phonenumber-field
     # ??? zoo_id = get id from Zoo class
@@ -45,7 +45,7 @@ class Staff(Worker):
 
 class Veterinary(Worker):
     User = models.OneToOneField(WebUser, on_delete=models.CASCADE, primary_key=True)
-    number_assigned_animals = models.IntegerField(null=False, blank=False)
+    number_assigned_animals = models.IntegerField(null=True, blank=False)
     # name varchar(50)
 
     def __unicode__(self):
