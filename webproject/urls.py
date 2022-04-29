@@ -20,8 +20,6 @@ from django.urls import path, include
 from zooproject import views
 
 urlpatterns = [
-    path('', auth_views.LoginView.as_view(template_name='registration/login.html',next_page='/list_data')),
     path('admin/', admin.site.urls),
-    path('register/', views.signup),
-    path('list_data', views.list_data),
+    path('', include('zooproject.urls')),
 ]

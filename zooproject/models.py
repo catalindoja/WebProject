@@ -64,7 +64,6 @@ class Animal(models.Model):
 
 
 class Visitor(models.Model):
-    visitor_id = models.AutoField(primary_key=True)
     User = models.OneToOneField(WebUser, on_delete=models.CASCADE, primary_key=True)
     name = models.CharField(max_length=40,blank=False,null=False)
     telephone = models.DecimalField(max_digits=9, decimal_places=0, blank=False,null=False)

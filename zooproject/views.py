@@ -3,7 +3,24 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView
-from .models import Worker
+from .models import *
+from .forms import *
+from django.views.generic.edit import CreateView, UpdateView
+
+
+class SignupVeterinaryView(CreateView):
+    model = Veterinary
+    form_class = VeterinarySignupForm
+    template_name = 'registration/register_veterinary.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'veterinary'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        web_user = form.save()
+        login(self.request, web_user)
+        return redirect('/')
 
 
 def signup(request):
@@ -27,6 +44,3 @@ def list_data(r):
     
     return render(r, 'zooproject/list_data.html', workers_dictionary)
 
-
-class RegisterView(TemplateView):
-    template_name = 'register.html'
