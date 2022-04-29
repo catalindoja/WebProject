@@ -23,8 +23,9 @@ class VeterinarySignupForm(UserCreationForm):
         web_user = super().save(commit=False)
         web_user.is_veterinary = True
         web_user.save()
-
-        veterinary = Veterinary.objects.create(User=web_user)
+        zoo = Zoo.objects.get(zoo_id=self.data.get('zoo_id'))
+        veterinary = Veterinary.objects.create(User=web_user, postalcode=self.data.get('postalcode'), zoo_id=zoo,number_assigned_animals= self.data.get('number_assigned_animals'),
+                                               age=self.data.get('age'))
         print(self.data.get('number_assigned_animals'))
         print(veterinary.number_assigned_animals)
         veterinary.number_assigned_animals = self.data.get('number_assigned_animals')
@@ -32,7 +33,7 @@ class VeterinarySignupForm(UserCreationForm):
         veterinary.age = self.data.get('age')
         veterinary.address = self.data.get('address')
         veterinary.postalcode = self.data.get('postalcode')
-        veterinary.zoo_id = self.data.get('zoo_id')
+
         print("-------------------------------------------------------")
         print("-------------------------------------------------------")
         print("-------------------------------------------------------")

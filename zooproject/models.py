@@ -24,7 +24,7 @@ class Zoo(models.Model):
 class Worker(models.Model):
     worker_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=80)
-    age = models.DateField(default=date.today, blank=False, null=False)
+    age = models.IntegerField(null=False)
     address = models.CharField(max_length=80)
     postalcode = models.IntegerField(blank=False, null=False)
     zoo_id = models.ForeignKey(Zoo, null=True, on_delete=models.CASCADE)
