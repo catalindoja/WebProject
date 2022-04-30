@@ -61,13 +61,28 @@ class StaffSignupForm(UserCreationForm):
 
 
 class VisitorSignupForm(UserCreationForm):
-
+    name = forms.CharField(max_length=40, widget=forms.TextInput, required=True)
+    telephone = forms.IntegerField(required=True)
+    email = forms.EmailField(required=True)
+    age = forms.IntegerField(required=True)
+    dateLatestVisit = forms.DateField()
+    zoo_id = forms.ModelChoiceField(queryset=Zoo.objects.all(), empty_label="(Nothing)")
 
     class Meta(UserCreationForm.Meta):
         model = WebUser
 
-
-
+    @transaction.atomic
+    def save(self):
+        web_user = super().save(commit=False)
+        web_user.is_visitor = True
+        web_user.save()
+        zoo = Zoo.objects.get(zoo_id=self.data.get('zoo_id'))
+        visitor = Visitor.objects.create(
+            User=web_user, telephone=self.data.get('telephone'), email= self.data.get('email'),
+            age=self.data.get('age'), dateLastVisit=self.data.get('dateLastVisit'), zoo_id=zoo)
+        visitor.save()
+        # client.CIF.add(*self.cleaned_data.get('CIF'))
+        return web_user  # web_user
 
 '''
 

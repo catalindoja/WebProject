@@ -38,6 +38,21 @@ class SignupStaffView(CreateView):
         return redirect('/')
 
 
+class SignupVisitorView(CreateView):
+    model = WebUser
+    form_class = VisitorSignupForm
+    template_name = 'registration/register_visitor.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'visitor'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        web_user = form.save()
+        login(self.request, web_user)
+        return redirect('/')
+
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
