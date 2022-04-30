@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.db import transaction
 from .models import *
+import datetime
 
 
 class VeterinarySignupForm(UserCreationForm):
@@ -65,7 +66,7 @@ class VisitorSignupForm(UserCreationForm):
     telephone = forms.IntegerField(required=True)
     email = forms.EmailField(required=True)
     age = forms.IntegerField(required=True)
-    dateLatestVisit = forms.DateField()
+    dateLatestVisit = forms.DateField(initial=datetime.date.today)
     zoo_id = forms.ModelChoiceField(queryset=Zoo.objects.all(), empty_label="(Nothing)")
 
     class Meta(UserCreationForm.Meta):
@@ -79,7 +80,7 @@ class VisitorSignupForm(UserCreationForm):
         zoo = Zoo.objects.get(zoo_id=self.data.get('zoo_id'))
         visitor = Visitor.objects.create(
             User=web_user, telephone=self.data.get('telephone'), email= self.data.get('email'),
-            age=self.data.get('age'), dateLastVisit=self.data.get('dateLastVisit'), zoo_id=zoo)
+            age=self.data.get('age'), dateLatestVisit=self.data.get('dateLatestVisit'), zoo_id=zoo)
         visitor.save()
         # client.CIF.add(*self.cleaned_data.get('CIF'))
         return web_user  # web_user
