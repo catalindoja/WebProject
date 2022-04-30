@@ -10,7 +10,8 @@ urlpatterns = [
     path('', auth_views.LoginView.as_view(template_name='registration/login.html',next_page='/list_data')),
     path('registration/register/', views.signup),
     path('list_data', views.list_data),
-    path('registration/register_veterinary', SignupVeterinaryView.as_view(), name='registration/register_veterinary')
+    path('registration/register_veterinary', SignupVeterinaryView.as_view(), name='registration/register_veterinary'),
+    path('registration/register_staff', SignupStaffView.as_view(), name='registration/register_staff'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

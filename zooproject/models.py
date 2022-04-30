@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 class WebUser(AbstractUser):
     is_veterinary = models.BooleanField(default=False)
     is_visitor = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
+    is_zoo_staff = models.BooleanField(default=False)
 
 
 class Zoo(models.Model):
