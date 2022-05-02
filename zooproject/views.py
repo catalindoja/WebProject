@@ -53,6 +53,27 @@ class SignupVisitorView(CreateView):
         return redirect('/')
 
 
+class SignupAnimalView(CreateView):
+    model = Animal
+    form_class = AnimalSignupForm
+    template_name = 'registration/register_animal.html'
+
+    def form_valid(self, form):
+        web_user = form.save()
+        login(self.request, web_user)
+        return redirect('/')
+
+    """def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'animal'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        web_user = form.save()
+        login(self.request, web_user)
+        return redirect('/')"""
+
+
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)

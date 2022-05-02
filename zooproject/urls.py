@@ -12,7 +12,8 @@ urlpatterns = [
     path('list_data', views.list_data),
     path('registration/register_veterinary', SignupVeterinaryView.as_view(), name='registration/register_veterinary'),
     path('registration/register_staff', SignupStaffView.as_view(), name='registration/register_staff'),
-    path('registration/register_visitor', SignupVisitorView.as_view(), name='registration/register_visitor')
+    path('registration/register_visitor', SignupVisitorView.as_view(), name='registration/register_visitor'),
+    path('registration/register_animal', SignupAnimalView.as_view(), name='registration/register_animal')
 ]
 
 urlpatterns += staticfiles_urlpatterns()
