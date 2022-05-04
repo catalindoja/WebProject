@@ -53,24 +53,28 @@ class SignupVisitorView(CreateView):
         return redirect('/')
 
 
-class SignupAnimalView(CreateView):
+class CreateAnimalView(CreateView):
     model = Animal
-    form_class = AnimalSignupForm
-    template_name = 'registration/register_animal.html'
+    form_class = CreateAnimalForm
+    template_name = 'register_animal.html'
+
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_veterinary:
+            return redirect('/')
+        else:
+            form = self.form_class
+            template_name = 'register_animal.html'
+            return render(request, template_name, {'form': form})
 
     def form_valid(self, form):
-        web_user = form.save()
-        login(self.request, web_user)
-        return redirect('/')
-
-    """def get_context_data(self, **kwargs):
-        kwargs['user_type'] = 'animal'
-        return super().get_context_data(**kwargs)
-
-    def form_valid(self, form):
-        web_user = form.save()
-        login(self.request, web_user)
-        return redirect('/')"""
+        if self.request.user.is_veterinary:
+            veterinary = Veterinary.objects.get(User=self.request.user)
+            form.instance.veterinary_id = veterinary
+            form.save()
+            return redirect('/')
+        else:
+            print("Error, user is not a veterinary")
+            return redirect('/')
 
 
 

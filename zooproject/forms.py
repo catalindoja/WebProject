@@ -63,32 +63,11 @@ class StaffSignupForm(UserCreationForm):
         return web_user  # web_user
 
 
-class AnimalSignupForm(ModelForm):
-    name = forms.CharField(max_length=40, widget=forms.TextInput, required=True)
-    zoo_id = forms.ModelChoiceField(queryset=Zoo.objects.all(), empty_label="(Nothing)")
-    staff_id = forms.ModelChoiceField(queryset=Staff.objects.all(), empty_label="(Nothing)")
-    veterinary_id = forms.ModelChoiceField(queryset=Veterinary.objects.all(), empty_label="(Nothing)")
-
+class CreateAnimalForm(ModelForm):
     class Meta:
         model = Animal
-        exclude = ['']
-
-    @transaction.atomic
-    def save(self):
-        web_user = super().save(commit=False)
-        web_user.is_veterinary = True
-        web_user.save()
-        zoo = Zoo.objects.get(zoo_id=self.data.get('zoo_id'))
-        staff = Staff(self.data.get('staff_id'))
-        veterinary = Veterinary(self.data.get('veterinary_id'))
-        animal = Animal.objects.create(
-            zoo_id=zoo,
-            staff_id=staff,
-            veterinary_id=veterinary,
-            name=self.data.get('name'))
-        animal.save()
-        # client.CIF.add(*self.cleaned_data.get('CIF'))
-        return web_user  # web_user
+        #fields = '__all__'
+        exclude = ['veterinary_id']
 
 
 class VisitorSignupForm(UserCreationForm):
