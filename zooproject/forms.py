@@ -70,6 +70,13 @@ class CreateAnimalForm(ModelForm):
         exclude = ['veterinary_id']
 
 
+class CreateZooForm(ModelForm):
+    class Meta:
+        model = Zoo
+        #fields = '__all__'
+        exclude = ['admin_id']
+
+
 class VisitorSignupForm(UserCreationForm):
     name = forms.CharField(max_length=40, widget=forms.TextInput, required=True)
     telephone = forms.IntegerField(required=True)
