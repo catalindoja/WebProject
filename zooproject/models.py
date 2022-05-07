@@ -31,16 +31,16 @@ class Worker(models.Model):
     # ??? phone_number = PhoneNumberField(null=False, blank=False, unique=True) # from phonenumber_field.modelfields import PhoneNumberField # pip install django-phonenumber-field
     # ??? zoo_id = get id from Zoo class
 
-    def __unicode__(self):
-        return u"%s" % self.name
+    def __str__(self):
+        return str(self.name)
 
 
 class Staff(Worker):
     User = models.OneToOneField(WebUser, on_delete=models.CASCADE, primary_key=True)
     assigned_habitat = models.CharField(max_length=80, default="Dolphins")
 
-    def __unicode__(self):
-        return u"%s" % self.name
+    def __str__(self):
+        return str(self.User)
 
 
 class Veterinary(Worker):
@@ -48,8 +48,8 @@ class Veterinary(Worker):
     number_assigned_animals = models.IntegerField(null=False, blank=False)
     # name varchar(50)
 
-    def __unicode__(self):
-        return u"%s" % self.name
+    def __str__(self):
+        return str(self.User)
 
 
 class Animal(models.Model):
@@ -59,8 +59,8 @@ class Animal(models.Model):
     staff_id = models.ForeignKey(Staff, null=True, on_delete=models.CASCADE)
     veterinary_id = models.ForeignKey(Veterinary, null=True, on_delete=models.CASCADE)
 
-    def __unicode__(self):
-        return u"%s" % self.name
+    def __str__(self):
+        return str(self.name)
 
 
 class Visitor(models.Model):
@@ -72,5 +72,5 @@ class Visitor(models.Model):
     dateLatestVisit = models.DateField(default=date.today,blank=False,null=False)
     zoo_id = models.ForeignKey(Zoo, null=True, on_delete=models.CASCADE)
 
-    def __unicode__(self):
-        return u"%s" % self.name
+    def __str__(self):
+        return str(self.User)
