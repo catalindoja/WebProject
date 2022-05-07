@@ -13,7 +13,9 @@ urlpatterns = [
     path('registration/register_veterinary', SignupVeterinaryView.as_view(), name='registration/register_veterinary'),
     path('registration/register_staff', SignupStaffView.as_view(), name='registration/register_staff'),
     path('registration/register_visitor', SignupVisitorView.as_view(), name='registration/register_visitor'),
-    path('registration/register_animal', SignupAnimalView.as_view(), name='registration/register_animal')
+    path('registration/register_animal', SignupAnimalView.as_view(), name='registration/register_animal'),
+    path('animal_editor/<str:pk>/', views.updateAnimal, name='edit/edit_animal'),
+    path('animal_editor/', views.list_animals, name='edit/list_animals'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

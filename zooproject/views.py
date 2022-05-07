@@ -96,6 +96,34 @@ def list_data(r):
     return render(r, 'zooproject/list_data.html', workers_dictionary)
 
 
+def list_animals(request):
+    if request.user.is_veterinary:
+        animals = Animal.objects.all()
+        animals_dictionary = {'animals': animals}
+        return render(request, 'zooproject/list_animals.html', animals_dictionary)
+    else:
+        print("Error el user no es un veterinario")
+        return redirect('/')
+
+def updateAnimal( request, *args, **kwargs):
+    if request.user.is_veterinary:
+        animal = Animal.objects.get(animal_id=kwargs.get('pk'))
+        form = AnimalEditorForm(instance=animal)
+
+        if request.method == 'POST':
+            form = AnimalEditorForm(request.POST, instance=animal)
+            form.instance.animal_id = kwargs.get('pk')
+            if form.is_valid():
+                edit_animal = Animal.objects.get(animal_id=kwargs.get('pk'))
+                edit_animal.save()
+                form.save()
+                return redirect('/animal_editor')
+
+        context = {'form': form}
+        return render(request, 'edit/edit_animal.html', context)
+    else:
+        print("Error el user no es un veterinario")
+        return redirect('/')
 
 
 '''
