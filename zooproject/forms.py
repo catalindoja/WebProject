@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.db import transaction
+from django.forms import ModelForm
+
 from .models import *
 import datetime
 
@@ -61,6 +63,20 @@ class StaffSignupForm(UserCreationForm):
         return web_user  # web_user
 
 
+class CreateAnimalForm(ModelForm):
+    class Meta:
+        model = Animal
+        #fields = '__all__'
+        exclude = ['veterinary_id']
+
+
+class CreateZooForm(ModelForm):
+    class Meta:
+        model = Zoo
+        #fields = '__all__'
+        exclude = ['admin_id']
+
+
 class VisitorSignupForm(UserCreationForm):
     name = forms.CharField(max_length=40, widget=forms.TextInput, required=True)
     telephone = forms.IntegerField(required=True)
@@ -85,6 +101,10 @@ class VisitorSignupForm(UserCreationForm):
         # client.CIF.add(*self.cleaned_data.get('CIF'))
         return web_user  # web_user
 
+class AnimalEditorForm(forms.ModelForm):
+    class Meta:
+        model = Animal
+        exclude = ['animal_id']
 '''
 
 class PeticionStandClienteForm(forms.ModelForm):

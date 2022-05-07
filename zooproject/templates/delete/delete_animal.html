@@ -1,0 +1,13 @@
+<!-- templates/home.html -->
+{% include 'base.html' %}
+  {% load static %}
+{% block content %}
+    <div>
+        <p>Are you sure you want to delete: "{{item}}"?</p>
+        <form action = "" method = "post">
+            {% csrf_token %}
+            <a href = "../">Cancel</a>
+            <input type="submit" value="Confirm">
+        </form>
+    </div>
+{% endblock content %}
