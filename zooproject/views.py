@@ -178,3 +178,10 @@ def deleteAnimal(request, pk):
         print("Error el user no es un veterinario")
         return redirect('/')
 
+
+def home(request):
+    return render(request, 'home.html')
+
+
+def logout(request):
+    return redirect('/')

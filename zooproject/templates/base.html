@@ -3,17 +3,14 @@
 <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="">
-      <img src="../static/images/unknown.png" alt="" width="50" height="30">
-    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="">
-            Events
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">
+            Home
           </a>
         </li>
 
@@ -22,55 +19,35 @@
         {% if user.is_veterinary %}
 
         <li>
-          <a class="nav-link active" aria-current="page" href="">  <!--Warning-->
-            Requests
+          <a class="nav-link active" aria-current="page" href="{% url 'create_animal' %}">  <!--Warning-->
+            Create an animal
           </a>
         </li>
         <li>
-          <a class="nav-link active" aria-current="page" href="">  <!--Warning-->
-            Incidences
+          <a class="nav-link active" aria-current="page" href="{% url 'animal_delete' %}">  <!--Warning-->
+            Delete an animal
+          </a>
+        </li>
+        <li>
+          <a class="nav-link active" aria-current="page" href="{% url 'animal_editor' %}">  <!--Warning-->
+            Edit an animal
           </a>
         </li>
         {% endif %}
 
         {% if user.is_zoo_staff %}
-
-        <li>
-          <a class="nav-link active" aria-current="page" href="">  <!--Warning-->
-            Requests
-          </a>
-        </li>
-        <li>
-          <a class="nav-link active" aria-current="page" href="">  <!--Warning-->
-            Incidences
-          </a>
-        </li>
         {% endif %}
 
-        {% if user.is_admin %}
+        {% if user.is_superuser %}
         <li>
-          <a class="nav-link active" aria-current="page" href="">  <!--Warning-->
-            Requests
-          </a>
-        </li>
-        <li>
-          <a class="nav-link active" aria-current="page" href="">  <!--Warning-->
-            Incidences
+          <a class="nav-link active" aria-current="page" href="{% url 'create_zoo' %}">  <!--Warning-->
+            Create Zoo
           </a>
         </li>
         {% endif %}
 
       {% if user.is_visitor %}
-           <li>
-          <a class="nav-link active" aria-current="page" href="">  <!--Warning-->
-            Requests
-          </a>
-        </li>
-        <li>
-          <a class="nav-link active" aria-current="page" href="">  <!--Warning-->
-            Incidences
-          </a>
-        </li>
+
       {% endif %}
 
       </ul>
@@ -78,15 +55,9 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
           {% if user.is_authenticated %}
-          <!--#TODO: mirar como hacer para que al clicar notifications, se muestren encima del template en el que estamos-->
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
-              Notifications
-            </a>
-          </li>
 
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="">
+              <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">
                 Logout
               </a>
             </li>
