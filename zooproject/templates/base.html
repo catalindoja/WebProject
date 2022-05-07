@@ -27,50 +27,30 @@
           </a>
         </li>
         <li>
-          <a class="nav-link active" aria-current="page" href="">  <!--Warning-->
-            Incidences
+          <a class="nav-link active" aria-current="page" href="{% url 'animal_delete' %}">  <!--Warning-->
+            Delete an animal
+          </a>
+        </li>
+        <li>
+          <a class="nav-link active" aria-current="page" href="{% url 'animal_editor' %}">  <!--Warning-->
+            Edit an animal
           </a>
         </li>
         {% endif %}
 
         {% if user.is_zoo_staff %}
-
-        <li>
-          <a class="nav-link active" aria-current="page" href="">  <!--Warning-->
-            Requests
-          </a>
-        </li>
-        <li>
-          <a class="nav-link active" aria-current="page" href="">  <!--Warning-->
-            Incidences
-          </a>
-        </li>
         {% endif %}
 
-        {% if user.is_admin %}
+        {% if user.is_superuser %}
         <li>
-          <a class="nav-link active" aria-current="page" href="">  <!--Warning-->
-            Requests
-          </a>
-        </li>
-        <li>
-          <a class="nav-link active" aria-current="page" href="">  <!--Warning-->
-            Incidences
+          <a class="nav-link active" aria-current="page" href="{% url 'create_zoo' %}">  <!--Warning-->
+            Create Zoo
           </a>
         </li>
         {% endif %}
 
       {% if user.is_visitor %}
-           <li>
-          <a class="nav-link active" aria-current="page" href="">  <!--Warning-->
-            Requests
-          </a>
-        </li>
-        <li>
-          <a class="nav-link active" aria-current="page" href="">  <!--Warning-->
-            Incidences
-          </a>
-        </li>
+
       {% endif %}
 
       </ul>
