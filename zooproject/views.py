@@ -1,11 +1,12 @@
 # Create your views here.
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView
 from .models import *
 from .forms import *
 from django.views.generic.edit import CreateView, UpdateView
+
 
 
 class SignupVeterinaryView(CreateView):
@@ -56,14 +57,14 @@ class SignupVisitorView(CreateView):
 class CreateAnimalView(CreateView):
     model = Animal
     form_class = CreateAnimalForm
-    template_name = 'register_animal.html'
+    template_name = 'create_animal.html'
 
     def get(self, request, *args, **kwargs):
         if not self.request.user.is_veterinary:
             return redirect('/')
         else:
             form = self.form_class
-            template_name = 'register_animal.html'
+            template_name = 'create_animal.html'
             return render(request, template_name, {'form': form})
 
     def form_valid(self, form):
@@ -72,8 +73,34 @@ class CreateAnimalView(CreateView):
             form.instance.veterinary_id = veterinary
             form.save()
             return redirect('/')
+
         else:
             print("Error, user is not a veterinary")
+            return redirect('/')
+
+
+
+class CreateZooView(CreateView):
+    model = Zoo
+    form_class = CreateZooForm
+    template_name = 'create_zoo.html'
+
+    def get(self, request, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            return redirect('/')
+        else:
+            form = self.form_class
+            template_name = 'create_zoo.html'
+            return render(request, template_name, {'form': form})
+
+    def form_valid(self, form):
+        if self.request.user.is_superuser:
+            admin = get_user_model()
+            form.instance.Username = admin
+            form.save()
+            return redirect('/')
+        else:
+            print("Error, user is not an admin")
             return redirect('/')
 
 
