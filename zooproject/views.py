@@ -141,11 +141,15 @@ def list_animals_delete(request):
 
 def deleteAnimal(request, pk):
     animal = Animal.objects.get(animal_id=pk)
-    if request.method == 'POST':
-        animal.delete()
+    if request.user.is_veterinary:
+        if request.method == 'POST':
+            animal.delete()
+            return redirect('/animal_delete')
+        context = {'item':animal}
+        return render(request, 'delete/delete_animal.html', context)
+    else:
+        print("Error el user no es un veterinario")
         return redirect('/')
-    context = {'item':animal}
-    return render(request, 'delete/delete_animal.html', context)
 
 
 
