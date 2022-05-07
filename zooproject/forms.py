@@ -94,6 +94,10 @@ class VisitorSignupForm(UserCreationForm):
         # client.CIF.add(*self.cleaned_data.get('CIF'))
         return web_user  # web_user
 
+class AnimalEditorForm(forms.ModelForm):
+    class Meta:
+        model = Animal
+        exclude = ['animal_id']
 '''
 
 class PeticionStandClienteForm(forms.ModelForm):

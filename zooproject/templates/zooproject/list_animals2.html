@@ -1,0 +1,23 @@
+<!-- templates/home.html -->
+{% include 'base.html' %}
+  {% load static %}
+{% block title %}
+    <div>
+        <h1 style="text-align:center">
+            Animals
+        </h1>
+    </div>
+{% endblock title %}
+
+{% block content %}
+    <div>
+        <ul>
+        {% for animal in animals %}
+            <li>
+                <a href="../../animal_delete/{{animal.animal_id}}/">Animal numero: {{ animal.animal_id }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    </div>
+{% endblock content %}
