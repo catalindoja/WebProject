@@ -39,6 +39,21 @@
             Create Zoo
           </a>
         </li>
+            <li>
+          <a class="nav-link active" aria-current="page" href="{% url 'registration/register_veterinary' %}">  <!--Warning-->
+            Register a Veterinary
+          </a>
+        </li>
+            <li>
+          <a class="nav-link active" aria-current="page" href="{% url 'registration/register_staff' %}">  <!--Warning-->
+            Register a Staff
+          </a>
+        </li>
+            <li>
+          <a class="nav-link active" aria-current="page" href="{% url 'registration/register_visitor' %}">  <!--Warning-->
+            Register a Visitor
+          </a>
+        </li>
         {% endif %}
 
       {% if user.is_visitor %}
