@@ -1,18 +1,15 @@
 Feature: Edit Animal
-In order to modify the attributes of an animal registry,
-As an admin or veterinary,
-I want to edit the animal register I created.
+  In order to modify the attributes of an animal registry,
+  As a veterinary,
+  I want to edit the animal register I created.
 
   Background: There are registered users and animals assigned to a veterinary
     Given Exists a user "user1" with password "password"
-      #User is vet or admin
     And Exists a user "user2" with password "password"
-      #User is vet
     And Exists user "user3" with password "password"
-      #User is not vet or admin
     And Exists animal registered by "user1"
-      | animal_id  | name             | zoo_id  | staff_id | veterinary_id |
-      | 001        | Mara the Meerkat | 001     | 001      | 001           |
+      | animal_id  | name             | zoo_id  | staff_id | veterinary_id | date       |
+      | 001        | Mara the Meerkat | 001     | 001      | 001           | 1998-07-01 |
 
   Scenario: Transfer animal to another zoo
     Given I login as user "user1" with password "password
