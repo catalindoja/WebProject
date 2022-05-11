@@ -7,40 +7,41 @@
 {% block content %}
 
 {% if form.errors %}
-<p style="text-align:center; padding-top: 25px; margin-bottom: -3%; font-size: 20px;">Your username and password didn't match. Please try again.</p>
+<p class="error-messages">Your username and password didn't match. Please try again.</p>
 {% endif %}
 
 {% if next %}
     {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
+    <p class="error-messages">Your account doesn't have access to this page. To proceed,
     please login with an account that has access.</p>
     {% else %}
-    <p>Please login to see this page.</p>
+    <p class="error-messages">Please login to see this page.</p>
     {% endif %}
 {% endif %}
-<body style="background-color:#0d1117;">
+<body class="page-body">
 <form  method="post" action="">
 {% csrf_token %}
 
 <div style="margin-top:10%; margin-bottom:10%;"></div>
-  <center> <div style="background-color:#212529; padding: 20px; width: 300px; border-radius:20px; border:2px solid #1df01d;">
+  <center> <div class="login-box">
 <table align="center" style="text-align:center;">
-<tr style="text-align:left !important;">
-    <td ><label style="padding:10px; font-weight: 900; color:white;" for="id_username">Username:</label></td>
+<tr class="margin-fields">
+    <td ><label class="label-fields" for="id_username">Username:</label></td>
 </tr>
 <tr>
-    <td><input style="text-align: center; border-radius:20px;" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" placeholder="Enter username" required="" id="id_username"></td>
+    <td><input class="input-fields" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" placeholder="Enter username" required="" id="id_username"></td>
 </tr>
-<tr style="text-align:left !important;">
-    <td><label style="padding:10px; font-weight: 900; color:white;" for="id_password">Password:</label></td>
+<tr class="margin-fields">
+    <td><label class="label-fields" for="id_password">Password:</label></td>
 </tr>
 <tr>
-<td><input style="text-align: center; border-radius:20px;" type="password" name="password" autocomplete="current-password" placeholder="Enter password" required="" id="id_password" ></td>
+<td><input class="input-fields" type="password" name="password" autocomplete="current-password" placeholder="Enter password" required="" id="id_password" ></td>
 </tr>
 <tr >
-    <td  style="padding-top:20px; padding-bottom:20px; "><input style="border:2px solid #1df01d; background-color:#2a2c2a; color:white; border-radius:5px;" type="submit" value="Login">
+    <td  style="padding-top:20px; padding-bottom:20px; ">
         <input type="hidden" name="next" value="{{ next }}">
-        <button style="margin-left:15%; border-radius:5px; border:2px solid #1df01d; background-color:#2a2c2a; color:white;" onclick="window.location.href='registration/register/';">Register</button>
+        <input class="page-button" type="submit" value="Login">
+        <button class="page-button" style="margin-left:15%;" onclick="window.location.href='registration/register/';">Register</button>
     </td>
 </tr>
 

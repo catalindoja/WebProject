@@ -2,21 +2,43 @@
   {% load static %}
 {% block title %}
     <div>
-        <h1 style="text-align:center">
+        <h1 class="page-head"style="text-align:center">
             Create Zoo
         </h1>
     </div>
 {% endblock title %}
 
 {% block content %}
-    <div>
-        <form action = "" method = "post">
-            {% csrf_token %}
-            <table>
-                {{ form.as_table }}
-            </table>
-            <input type="submit" value=Submit">
-        </form>
-    </div>
-    </div>
+    <body class="page-body">
+        <center>
+            <div>
+                <form action = "" method = "post">
+                    {% csrf_token %}
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><input style="width:472px" type="text" name="name" maxlength="60" required="" id="id_name" placeholder="Name"></td>
+                            </tr>
+                            <tr>
+                                <td><textarea name="description" cols="40" rows="5" id="id_description" placeholder="Description"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><input style="width:472px" type="number" name="max_visitors" step="1" required="" id="id_max_visitors" placeholder="Max amount of visitors"></td>
+                            </tr>
+                            <tr>
+                                <td><input style="width:472px" type="text" name="address" maxlength="80" required="" id="id_address" placeholder="Address"></td>
+                            </tr>
+                            <tr>
+                                <td><input style="width:472px" type="number" name="postalcode" step="1" required="" id="id_postalcode" placeholder="Postal code"></td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left:82%;"><input class="page-button" style="margin-top:25%;"  type="submit" value=Submit></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </form>
+            </div>
+        </center>
+    </body>
 {% endblock content %}
