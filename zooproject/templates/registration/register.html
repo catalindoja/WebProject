@@ -1,10 +1,51 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
-  </form>
+  <body class="page-body">
+    <h2 class="page-head">Sign up</h2>
+      <form method="post">
+        {% csrf_token %}
+        <center>
+          <table>
+            <tr>
+              <td><input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username" placeholder="Username"></td>
+              <td style="padding-left:10px">
+                <div class="tooltip">?
+                <span class="tooltiptext"><ul>
+                  <li>Required.</li>
+                  <li>150 characters or fewer.</li>
+                  <li>Letters, digits and @/./+/-/_ only.</li>
+                  <li>Only @/./+/-/_</li>
+                </ul></span>
+                </div>
+              </td>
+            </tr>
+            <tr >
+              <td style="padding-top:10px;"><input type="password" name="password1" autocomplete="new-password" required="" id="id_password1" placeholder="Password"></td>
+              <td style="padding-left:10px; padding-top:10px;">
+                <div class="tooltip">?
+                  <span class="tooltiptext"><ul>
+                    <li>Your password can’t be too similar to your username.</li>
+                    <li>Your password must contain at least 8 characters.</li>
+                    <li>Your password can’t be a commonly used password.</li>
+                    <li>Your password can’t be entirely numeric.</li>
+                  </ul></span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-top: 10px;">
+              </td>
+            </tr>
+            <tr>
+              <td><input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" placeholder="Confirm Password"></td>
+            </tr>
+            <tr>
+              <td style="padding-top: 10px; text-align:right;"><button class="page-button" type="submit">Sign up</button></td>
+            </tr>
+
+          </table>
+        </center>
+
+      </form>
 {% endblock %}
