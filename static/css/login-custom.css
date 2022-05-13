@@ -1,0 +1,33 @@
+/* LOGIN FORM */
+
+
+.input-fields {
+    text-align: center;
+    border-radius:20px;
+}
+
+.label-fields {
+    padding:10px;
+    font-weight: 900;
+    color:white;
+}
+
+.margin-fields{
+    text-align:left !important;
+}
+
+.login-box{
+    background-color:#212529;
+    padding: 20px;
+    width: 300px;
+    border-radius:20px;
+    border:2px solid #1df01d;
+}
+
+.error-messages {
+    text-align:center;
+    padding-top: 25px;
+    margin-bottom: -3%;
+    font-size: 20px;
+    color:white
+}
