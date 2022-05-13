@@ -75,3 +75,20 @@ class VisitorCreationTestCase(TestCase):
         user = WebUser.objects.get(username='testuser3')
         visitor = Visitor.objects.get(User=user)
         self.assertEqual(visitor.name, 'John Doe')
+
+class AnimalEditTestCase(TestCase):
+    def setUp(self):
+        Animal.objects.create(name='Giraffe')
+
+    def test_animal_creation_and_retrieval(self):
+        Animal.objects.filter(name='Giraffe').update(name='Shark')
+        animal = Animal.objects.get(name='Shark')
+        self.assertEqual(animal.name, 'Shark')
+
+class AnimalDeleteTestCase(TestCase):
+    def setUp(self):
+        Animal.objects.create(name='Rhino')
+
+    def test_animal_creation_and_retrieval(self):
+        Animal.objects.filter(name='Rhino').delete()
+        self.assertEqual(Animal.objects.filter(name='Rhino').exists(), False)
