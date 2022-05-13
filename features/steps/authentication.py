@@ -13,8 +13,8 @@ def step_impl(context, username, password):
     form = context.browser.find_by_tag('form').first
     context.browser.fill('username', username)
     context.browser.fill('password', password)
-    form.find_by_value('login').first.click()
-    assert context.browser.is_text_present('User: ' + username)
+    form.find_by_value('Login').first.click()
+    assert context.browser.is_text_present("Welcome to our Zoo page")
 
 @given('I\'m not logged in')
 def step_impl(context):
