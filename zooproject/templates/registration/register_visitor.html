@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {% block content %}
+{% include 'base.html' %}
+  {% load static %}
+{% block title %}
+    <div>
+        <h1 style="text-align:center">
+            Register Visitor
+        </h1>
+    </div>
+{% endblock title %}
+
+{% block content %}
     <div>
         <form action = "" method = "post">
             {% csrf_token %}
@@ -15,6 +18,5 @@
             <input type="submit" value=Submit">
         </form>
     </div>
-    {% endblock content %}
-</body>
-</html>
+    </div>
+{% endblock content %}

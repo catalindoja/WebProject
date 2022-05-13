@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-      {% load static %}
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="{% static 'js/api_animals.js' %}"></script>
+    <script>
+        $("#trigger_api").click(function () {
+            console.log("Entra")
+            var countries = ["Afghanistan", "Albania","Zaire", "Zambia", "Zimbabwe"];
+                $('#id_name').val(countries[0]);
+        });
+    </script>
 </head>
 <body>
 {% include 'base.html' %}
-
+  {% load static %}
 {% block title %}
 
     <div>
@@ -32,7 +37,7 @@
              <button type="button" id="trigger_api">Autocomplete with API</button>
         </form>
     </div>
-
+    </div>
 {% endblock content %}
 
 </body>

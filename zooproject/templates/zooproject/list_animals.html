@@ -14,8 +14,10 @@
         <ul>
         {% for animal in animals %}
             <li>
-                <a href="../../animal_editor/{{animal.animal_id}}/">Animal numero: {{ animal.animal_id }}
-                </a>
+                <h2 display: inline>Animal numero: {{ animal.name }}
+                    <a href="../../animal_editor/{{animal.animal_id}}/">Edit</a>
+                    <a href="../../animal_delete/{{animal.animal_id}}">Delete</a>
+                </h2>
             </li>
         {% endfor %}
     </ul>

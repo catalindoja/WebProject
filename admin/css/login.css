@@ -59,3 +59,7 @@
 .login .password-reset-link {
     text-align: center;
 }
+
+.log-button {
+    background-color:red !important;
+}

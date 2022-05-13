@@ -1,6 +1,10 @@
 <!-- templates/base.html -->
 {% load static %}
 <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/login-custom.css' %}">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/shared.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,13 +28,8 @@
           </a>
         </li>
         <li>
-          <a class="nav-link active" aria-current="page" href="{% url 'animal_delete' %}">  <!--Warning-->
-            Delete an animal
-          </a>
-        </li>
-        <li>
           <a class="nav-link active" aria-current="page" href="{% url 'animal_editor' %}">  <!--Warning-->
-            Edit an animal
+            Delete and edit an animal
           </a>
         </li>
         {% endif %}
@@ -42,6 +41,21 @@
         <li>
           <a class="nav-link active" aria-current="page" href="{% url 'create_zoo' %}">  <!--Warning-->
             Create Zoo
+          </a>
+        </li>
+            <li>
+          <a class="nav-link active" aria-current="page" href="{% url 'registration/register_veterinary' %}">  <!--Warning-->
+            Register a Veterinary
+          </a>
+        </li>
+            <li>
+          <a class="nav-link active" aria-current="page" href="{% url 'registration/register_staff' %}">  <!--Warning-->
+            Register a Staff
+          </a>
+        </li>
+            <li>
+          <a class="nav-link active" aria-current="page" href="{% url 'registration/register_visitor' %}">  <!--Warning-->
+            Register a Visitor
           </a>
         </li>
         {% endif %}

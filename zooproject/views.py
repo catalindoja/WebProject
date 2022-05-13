@@ -156,16 +156,6 @@ def updateAnimal( request, *args, **kwargs):
         print("Error el user no es un veterinario")
         return redirect('/')
 
-
-def list_animals_delete(request):
-    if request.user.is_veterinary:
-        animals = Animal.objects.all()
-        animals_dictionary = {'animals': animals}
-        return render(request, 'zooproject/list_animals2.html', animals_dictionary)
-    else:
-        print("Error el user no es un veterinario")
-        return redirect('/')
-
 def deleteAnimal(request, pk):
     animal = Animal.objects.get(animal_id=pk)
     if request.user.is_veterinary:

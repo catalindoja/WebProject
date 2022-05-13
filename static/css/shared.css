@@ -1,0 +1,29 @@
+.page-head{
+    text-align:center;
+    color:white;
+    margin-top:2%;
+    margin-bottom:2%;
+}
+
+.page-button {
+    border-radius:5px;
+    border:2px solid #1df01d;
+    background-color:#2a2c2a;
+    color:white;
+    width:80px;
+    height:35px;
+}
+
+.page-button:hover {
+    border-radius:5px;
+    border:2px solid red;
+    background-color:white;
+    color:black;
+    font-weight:900;
+
+}
+
+/*background*/
+.page-body {
+    background-color:#0d1117 !important;
+}
