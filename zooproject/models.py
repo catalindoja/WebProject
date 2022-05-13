@@ -57,7 +57,7 @@ class Animal(models.Model):
     name = models.CharField(max_length=80)
     zoo_id = models.ForeignKey(Zoo, null=True, blank=True, on_delete=models.CASCADE)
     staff_id = models.ForeignKey(Staff, null=True, blank=True, on_delete=models.CASCADE)
-    veterinary_id = models.ForeignKey(Veterinary, null=True, on_delete=models.CASCADE)
+    veterinary_id = models.ForeignKey(Veterinary, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.name)
