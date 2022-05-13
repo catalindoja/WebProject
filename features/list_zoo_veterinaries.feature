@@ -3,9 +3,10 @@ Feature: List Zoo Veterinaries
   As an admin,
   I want to list the veterinaries assigned to a zoo.
 
-  Background: There is at least one veterinary assigned to the same zoo
+  Background: There is at least one veterinary assigned to a given zoo
     Given Exists a user "user1" with password "password"
-    And Exists veterinary registered by "user1"
+    And Exists zoo with "zoo_id"
+    And Exists veterinary with "zoo_id"
       | user   | number_assigned_animals | zoo_id | date       |
       | Joan   | 12                      | 001    | 1998-07-01 |
       | Ricard | 5                       | 003    | 1998-07-02 |
