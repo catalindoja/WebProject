@@ -27,6 +27,6 @@ Feature: Delete Animal
     Then There is no "delete" link avaliable
 
   Scenario: Try to edit animal but not assigned to you
-    Given login as "user2" with password "password"
+    Given I login as "user2" with password "password"
     When I view the details for animal "Mara the Meerkat"
     Then There is no "delete" link available

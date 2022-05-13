@@ -46,7 +46,6 @@ class Staff(Worker):
 class Veterinary(Worker):
     User = models.OneToOneField(WebUser, on_delete=models.CASCADE, primary_key=True)
     number_assigned_animals = models.IntegerField(null=False, blank=False)
-    zoo_id = models.ForeignKey(Zoo, null=True, on_delete=models.CASCADE)
     # name varchar(50)
 
     def __str__(self):
