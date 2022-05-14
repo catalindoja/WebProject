@@ -10,7 +10,7 @@ import time
 use_step_matcher("re")
 
 
-@given(u'I create a zoo "Zoo Barcelona"')
+@given(u'I register a zoo "Zoo Barcelona"')
 def step_impl(context):
     context.selenium.get(f'{context.test.live_server_url}/create_zoo')
     name_field = context.selenium.find_element_by_name("name")
