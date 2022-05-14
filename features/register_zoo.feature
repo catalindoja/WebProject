@@ -7,7 +7,6 @@ Feature: Register Zoo
     Given I log in as an admin
 
   Scenario: Register a zoo
-    Given I login as  an admin
     When I register a zoo "Zoo Barcelona"
-    Then I'm viewing the admin page
+    Then I'm viewing the admin page for the zoos
     And There is 1 zoo called "Zoo Barcelona"

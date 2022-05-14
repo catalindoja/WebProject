@@ -24,17 +24,29 @@ def step_impl(context):
     postal_code_field = context.selenium.find_element_by_id("id_postalcode")
     postal_code_field.send_keys("25000")
     # Click submit button
-    context.selenium.find_element_by_xpath('/html/body/center/div/form/table/tbody/tr[6]/td/input').click() #TODO: Fix xpath
+    context.selenium.find_element_by_xpath('/html/body/center/div/form/table/tbody/tr[6]/td/input').click()
 
 
-@then(u'I\'m viewing the admin page')
+@when(u'I register a zoo "Zoo Barcelona"')
 def step_impl(context):
-    context.selenium.get(f'{context.test.live_server_url}/admin/zooproject/zoo/') #TODO: Check url
-    username_field = context.selenium.find_element_by_id("id_username")
-    username_field.send_keys("admin")
-    password_field = context.selenium.find_element_by_id("id_password")
-    password_field.send_keys("admin")
-    context.selenium.find_element_by_xpath('//input[@value="Log in"]').click()
+    context.selenium.get(f'{context.test.live_server_url}/create_zoo')
+    name_field = context.selenium.find_element_by_name("name")
+    name_field.send_keys("Zoo Barcelona")
+    description_field = context.selenium.find_element_by_id("id_description")
+    description_field.send_keys("Zoo de la ciutat de Barcelona")
+    max_vistors_field = context.selenium.find_element_by_id("id_max_visitors")
+    max_vistors_field.send_keys("100")
+    address_field = context.selenium.find_element_by_id("id_address")
+    address_field.send_keys("Plaça Catalunya")
+    postal_code_field = context.selenium.find_element_by_id("id_postalcode")
+    postal_code_field.send_keys("25000")
+    # Click submit button
+    context.selenium.find_element_by_xpath('/html/body/center/div/form/table/tbody/tr[6]/td/input').click()
+
+
+@then(u'I\'m viewing the admin page for the zoos')
+def step_impl(context):
+    context.selenium.get(f'{context.test.live_server_url}/admin/zooproject/zoo/')
 
 
 @then(u'There is 1 zoo called "Zoo Barcelona"')
