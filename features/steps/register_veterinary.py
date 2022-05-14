@@ -35,7 +35,7 @@ def step_impl(context):
     assert context.selenium.find_element_by_xpath("//*[contains(text(), 'Zoo Barcelona')]")
 
 
-@when(u'I register veterinary assigned to "Zoo Barcelona"')
+@when(u'I register a veterinary "Test_guy" assigned to "Zoo Barcelona"')
 def step_impl(context):
     # Login to the Admin Panel
     context.selenium.get(f'{context.test.live_server_url}/registration/register_veterinary')
