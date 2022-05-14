@@ -1,5 +1,5 @@
 Feature: Register Zoo
-  In order to keep track of the existing zoo's,
+  In order to keep track of the existing zoos,
   As an admin,
   I want to register a zoo with its details.
 
