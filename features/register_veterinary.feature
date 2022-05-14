@@ -3,16 +3,12 @@ In order to keep track of the zoo veterinaries,
 As a veterinary,
 I want to register a veterinary in the corresponding zoo with its personal details.
 
- Background: There is a registered user
-    Given Exists a user "userProvaAuth" with password "testing4242"
-    Given I am on the Django Admin
+ Background: There is a registered admin and a zoo
+    Given I log in as an admin
     Given I create a zoo "Zoo Barcelona"
-    Given A zoo "Zoo Barcelona" exists
+    Then Exists a zoo "Zoo Barcelona"
 
   Scenario: Register just veterinary name
-    Given I login as user "userProvaAuth" with password "testing4242"
-    When I register veterinary
+    When I register veterinary assigned to "Zoo Barcelona"
     Then I'm viewing the admin page
-      | name        |
-      | Joan        |
-    And There are 1 veterinaries
+    And There is 1 veterinary called "Test_guy"
