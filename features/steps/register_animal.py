@@ -24,6 +24,20 @@ def step_impl(context):
     context.selenium.find_element_by_xpath('/html/body/div[2]/form/input[2]').click()
 
 
+@given(u'I create an animal "Test_animal" assigned to the zoo "Zoo Barcelona", the veterinary "Test_vet" and the staff "Test_staff"')
+def step_impl(context):
+    context.selenium.get(f'{context.test.live_server_url}/create_animal')
+    name_field = context.selenium.find_element_by_id("id_name")
+    name_field.send_keys("Test_animal")
+    
+    zoo_id_field = Select(context.selenium.find_element_by_id('id_zoo_id'))
+    zoo_id_field.select_by_visible_text("Zoo Barcelona")
+    staff_id_field = Select(context.selenium.find_element_by_id('id_staff_id'))
+    staff_id_field.select_by_visible_text("Test_staff")
+
+    context.selenium.find_element_by_xpath('/html/body/div[2]/form/input[2]').click()
+
+
 @then(u'I\'m viewing the admin page for the animals')
 def step_impl(context):
     context.selenium.get(f'{context.test.live_server_url}/admin/zooproject/animal/')
@@ -73,4 +87,18 @@ def step_impl(context):
 @then(u'I get redirected to log in as a veterinary')
 def step_impl(context):
     assert context.selenium.find_element_by_id("id_username")
-    time.sleep(10)
+
+
+@given(u'I create an animal "Test_animal_2" assigned to the zoo "Zoo Barcelona", the veterinary "Test_vet" and the staff "Test_staff"')
+def step_impl(context):
+    context.selenium.get(f'{context.test.live_server_url}/create_animal')
+    name_field = context.selenium.find_element_by_id("id_name")
+    name_field.send_keys("Test_animal_2")
+    
+    zoo_id_field = Select(context.selenium.find_element_by_id('id_zoo_id'))
+    zoo_id_field.select_by_visible_text("Zoo Barcelona")
+    staff_id_field = Select(context.selenium.find_element_by_id('id_staff_id'))
+    staff_id_field.select_by_visible_text("Test_staff")
+
+    context.selenium.find_element_by_xpath('/html/body/div[2]/form/input[2]').click()
+
