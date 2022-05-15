@@ -161,7 +161,7 @@ def deleteAnimal(request, pk):
     if request.user.is_veterinary:
         if request.method == 'POST':
             animal.delete()
-            return redirect('/animal_delete')
+            return redirect('/animal_editor')
         context = {'item':animal}
         return render(request, 'delete/delete_animal.html', context)
     else:
