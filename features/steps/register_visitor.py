@@ -12,7 +12,6 @@ use_step_matcher("re")
 
 @when(u'I register a visitor "Test_visitor" assigned to "Zoo Barcelona"')
 def step_impl(context):
-    # Login to the Admin Panel
     context.selenium.get(f'{context.test.live_server_url}/registration/register_visitor')
     username_field = context.selenium.find_element_by_id("id_username")
     username_field.send_keys("Test_visitor")

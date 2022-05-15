@@ -12,7 +12,34 @@ use_step_matcher("re")
 
 @when(u'I register a veterinary "Test_vet" assigned to "Zoo Barcelona"')
 def step_impl(context):
-    # Login to the Admin Panel
+    context.selenium.get(f'{context.test.live_server_url}/registration/register_veterinary')
+    username_field = context.selenium.find_element_by_id("id_username")
+    username_field.send_keys("Test_vet")
+    password1_field = context.selenium.find_element_by_id("id_password1")
+    password1_field.send_keys("prova1234@")
+
+    password2_field = context.selenium.find_element_by_id("id_password2")
+    password2_field.send_keys("prova1234@")
+    name_field = context.selenium.find_element_by_id("id_name")
+    name_field.send_keys("Test_vet")
+    age_field = context.selenium.find_element_by_id("id_age")
+    age_field.send_keys(25)
+    address_field = context.selenium.find_element_by_id("id_address")
+    address_field.send_keys("Carrer prova")
+    postal_code_field = context.selenium.find_element_by_id("id_postalcode")
+    postal_code_field.send_keys("25000")
+    
+    zoo_id_field = Select(context.selenium.find_element_by_id('id_zoo_id'))
+    zoo_id_field.select_by_visible_text("Zoo Barcelona")
+    
+    n_assigned_animals_field = context.selenium.find_element_by_id("id_number_assigned_animals")
+    n_assigned_animals_field.send_keys("20")
+
+    context.selenium.find_element_by_xpath('/html/body/div/form/input[2]').click()
+
+
+@given(u'I register a veterinary "Test_vet" assigned to "Zoo Barcelona"')
+def step_impl(context):
     context.selenium.get(f'{context.test.live_server_url}/registration/register_veterinary')
     username_field = context.selenium.find_element_by_id("id_username")
     username_field.send_keys("Test_vet")
