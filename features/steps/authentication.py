@@ -11,7 +11,7 @@ use_step_matcher("parse")
 @given('Exists a user "{username}" with password "{password}"')
 def step_impl(context, username, password):
     chrome_options = Options()
-    #chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless")
     context.selenium = webdriver.Chrome(options=chrome_options)
 
     get_user_model().objects.create_user(username=username, password=password, email=username+"@gmail.com")
@@ -20,7 +20,7 @@ def step_impl(context, username, password):
 @given('I login as user "{username}" with password "{password}"')
 def step_impl(context, username, password):
     chrome_options = Options()
-    #chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless")
     context.selenium = webdriver.Chrome(options=chrome_options)
     context.selenium.get(f'{context.test.live_server_url}')
 
@@ -39,7 +39,7 @@ def step_impl(context, username, password):
 @given(u'I log in as an admin')
 def step_impl(context):
     chrome_options = Options()
-    #chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless")
     context.selenium = webdriver.Chrome(options=chrome_options)
     # Login to the Admin Panel
     context.selenium.get(f'{context.test.live_server_url}/admin/')
