@@ -1,0 +1,26 @@
+<!-- templates/home.html -->
+{% include 'base.html' %}
+  {% load static %}
+{% block title %}
+    <div>
+        <h1 style="text-align:center">
+            Zoos
+        </h1>
+    </div>
+{% endblock title %}
+
+{% block content %}
+    <div>
+        <ul>
+        {% for zoo in zoos %}
+            <li>
+                <h2 display: inline>Zoo name: {{ zoo.name }}</h2>
+                <h4>Zoo description: {{ zoo.description }}</h4>
+                <h4>Zoo address: {{ zoo.address }}</h4>
+                <h4>Zoo postalcode: {{ zoo.postalcode }}</h4>
+            </li>
+            <br>
+        {% endfor %}
+    </ul>
+    </div>
+{% endblock content %}

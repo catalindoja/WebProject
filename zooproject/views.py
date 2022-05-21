@@ -175,3 +175,9 @@ def home(request):
 
 def logout(request):
     return redirect('/')
+
+
+def list_zoos(request):
+    zoos = Zoo.objects.all()
+    zoos_dictionary = {'zoos': zoos}
+    return render(request, 'zooproject/list_zoo.html', zoos_dictionary)

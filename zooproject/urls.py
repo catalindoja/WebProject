@@ -20,6 +20,7 @@ urlpatterns = [
     path('animal_editor/', views.list_animals, name='animal_editor'),
     path('animal_delete/<str:pk>/', views.deleteAnimal, name='delete/delete_animal'),
     path('create_zoo', CreateZooView.as_view(), name='create_zoo'),
+    path('list_zoo/', views.list_zoos, name='list_zoo'),
 
 ]
 
