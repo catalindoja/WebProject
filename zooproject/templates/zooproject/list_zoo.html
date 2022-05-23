@@ -10,14 +10,16 @@
 {% endblock title %}
 
 {% block content %}
-    <div>
+    <div vocab="https://schema.org/">
         <ul>
         {% for zoo in zoos %}
             <li>
-                <h2 display: inline>Zoo name: {{ zoo.name }}</h2>
-                <h4>Zoo description: {{ zoo.description }}</h4>
-                <h4>Zoo address: {{ zoo.address }}</h4>
-                <h4>Zoo postalcode: {{ zoo.postalcode }}</h4>
+            <span typeof="Zoo">
+                <h2 display: inline><span property="name">Zoo name: {{ zoo.name }}</span></h2>
+                <h4><span property="description">Zoo description: {{ zoo.description }}</span></h4>
+                <h4><span typeof="PostalAddress" property="address"><span property="streetAddress">Zoo address: {{ zoo.address }}</span></span></h4>
+                <h4><span typeof="PostalAddress" property="address"><span property="postalCode">Zoo postalcode: {{ zoo.postalcode }}</span></span></h4>
+            </span>
             </li>
             <br>
         {% endfor %}
